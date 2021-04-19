@@ -14,5 +14,7 @@
             <input type="submit" name="submit">
         </label>
     </form>
+    <span>Dollar conversion equals: </span>
+    <span th:if="${converted}" th:text="${converted}"></span>
 </body>
 </html>

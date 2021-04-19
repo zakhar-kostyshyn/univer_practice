@@ -1,6 +1,8 @@
 package com.exchange.example.controller;
 
-import lombok.Data;
+import com.exchange.example.dto.Values;
+import com.exchange.example.service.ExchangeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ExchangePageController {
 
+    @Autowired
+    private ExchangeService exchangeService;
+
     @GetMapping
     public String mainPage(Model model) {
         model.addAttribute("values", new Values());
@@ -18,15 +23,13 @@ public class ExchangePageController {
 
     @PostMapping
     public String formHandler(
-            @ModelAttribute("values") Values values
+            @ModelAttribute("values") Values values,
+            Model model
     ) {
-        System.out.println("values = " + values);
-        return "redirect:/";
+        double converted = exchangeService.convert(values);
+        model.addAttribute("converted", converted);
+        return "exchange_page";
     }
 
 }
 
-@Data
-class Values {
-    double gryvnas;
-}

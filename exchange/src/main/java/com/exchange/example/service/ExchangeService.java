@@ -1,5 +1,6 @@
 package com.exchange.example.service;
 
+import com.exchange.example.dto.Values;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +18,9 @@ public class ExchangeService {
         return Currency.FOUNT.convert(gryvans);
     }
 
+    public double convert(Values values) {
+        return Currency.DOLLAR.convert(values.getGryvnas());
+    }
 }
 
 
