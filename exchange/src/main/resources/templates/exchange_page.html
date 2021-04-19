@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Exchange currency page</title>
 </head>
 <body>
     <h2 style="text-align: center">Hello in Awesome Exchanger</h2>
+    <form th:action="@{/}" th:object="${values}" method="post">
+        <label for="amount">
+            <span>Amount of gryvnas: </span>
+            <input id="amount" name="amount" type="text" th:field="*{gryvnas}">
+            <input type="submit" name="submit">
+        </label>
+    </form>
 </body>
 </html>
