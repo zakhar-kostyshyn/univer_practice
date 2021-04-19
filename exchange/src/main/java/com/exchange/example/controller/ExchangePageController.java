@@ -27,7 +27,9 @@ public class ExchangePageController {
             Model model
     ) {
         double converted = exchangeService.convert(values);
+        System.out.println(values);
         model.addAttribute("converted", converted);
+        model.addAttribute("currency", values.getCurrency().name().toLowerCase());
         return "exchange_page";
     }
 

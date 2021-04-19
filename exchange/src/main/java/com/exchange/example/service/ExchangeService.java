@@ -1,5 +1,6 @@
 package com.exchange.example.service;
 
+import com.exchange.example.dto.Currency;
 import com.exchange.example.dto.Values;
 import org.springframework.stereotype.Service;
 
@@ -19,24 +20,12 @@ public class ExchangeService {
     }
 
     public double convert(Values values) {
-        return Currency.DOLLAR.convert(values.getGryvnas());
+        return values.getCurrency().convert(values.getGryvnas());
     }
 }
 
 
 
-enum Currency {
-    DOLLAR(27), EURO(30), FOUNT(40);
 
-    private final double rate;
-
-    Currency(double rate) {
-        this.rate = rate;
-    }
-
-    public double convert(double gryvnas) {
-        return gryvnas / rate;
-    }
-}
 
 

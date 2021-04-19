@@ -6,15 +6,23 @@
     <title>Exchange currency page</title>
 </head>
 <body>
-    <h2 style="text-align: center">Hello in Awesome Exchanger</h2>
+    <h2 style="text-align: center">Hello in Exchanger</h2>
     <form th:action="@{/}" th:object="${values}" method="post">
         <label for="amount">
             <span>Amount of gryvnas: </span>
             <input id="amount" name="amount" type="text" th:field="*{gryvnas}">
+        </label>
+        <label for="kind">
+            <select id="kind" name="kind" th:field="*{currency}">
+                <option th:value="DOLLAR" th:text="Dollar"></option>
+                <option th:value="EURO" th:text="Euro"></option>
+                <option th:value="FOUNT" th:text="Fount"></option>
+            </select>
             <input type="submit" name="submit">
         </label>
     </form>
-    <span>Dollar conversion equals: </span>
+    <span th:if="${currency}" th:text="${currency}"></span>
+    <span th:if="${converted}"> conversion equals: </span>
     <span th:if="${converted}" th:text="${converted}"></span>
 </body>
 </html>
